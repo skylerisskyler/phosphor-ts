@@ -1,2 +1,2 @@
 # Phosphor
-## Home Assistant Add-on for advanced 
+## Home Assistant Add-on for advanced lighting automation.
