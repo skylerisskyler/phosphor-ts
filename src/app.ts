@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 
 import Express from 'express'
 import WebSocket from 'ws'
@@ -10,14 +10,14 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { PubSub } from 'graphql-subscriptions';
 
 
-require('dotenv').config()
-const HA_ADDRESS: string = process.env.HA_ADDRESS || ''
+
+const HA_URL: string = process.env.HA_URL || ''
 const HA_TOKEN: string = process.env.HA_TOKEN || ''
 
 
 import schema from '../graphql/schema'
 import configHandler from './utils/configHandler'
-import { Instance } from './types/HomeAssistant';
+import HomeAssistant from './home-assistant/HomeAssistant'
 import { initial } from 'lodash';
 
 const homeAssistant = true
@@ -65,15 +65,12 @@ async function main() {
 
   const config: any = configHandler.init()
 
-
-  const homeAssistant: Instance = new Instance(HA_ADDRESS, HA_TOKEN)
-  await homeAssistant.init()
-  homeAssistant.callLightService()
+  const homeAssistant: HomeAssistant = new HomeAssistant(HA_URL, HA_TOKEN)
+  await homeAssistant.connect()
+  await homeAssistant.subscribeEntities()
 
 }
 
 main()
-
-//
 
 
