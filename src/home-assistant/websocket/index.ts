@@ -14,13 +14,13 @@ export * from "./types";
 export * from "./commands";
 
 export async function createConnection(options?: Partial<ConnectionOptions>) {
-  const connOptions: ConnectionOptions = {
+  const connectionOptions: ConnectionOptions = {
     setupRetry: 0,
     createSocket,
     ...options,
   };
 
-  const socket = await connOptions.createSocket(connOptions);
-  const conn = new Connection(socket, connOptions);
-  return conn;
+  const socket = await connectionOptions.createSocket(connectionOptions);
+  const connection = new Connection(socket, connectionOptions);
+  return connection;
 }

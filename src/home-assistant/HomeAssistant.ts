@@ -1,34 +1,44 @@
-// Example connect code
 import {
   createConnection,
   subscribeEntities,
   ERR_HASS_HOST_REQUIRED,
   createLongLivedTokenAuth,
   Auth,
-  Connection
-} from "./";
+  Connection,
+} from "./websocket";
 
-
+import Entity from '../types/Entity'
+import { checkValidationErrors } from "@graphql-tools/utils"
+import { find } from 'lodash'
 
 class HomeAssistant {
 
   auth: Auth
   connection: Connection | null
+  entities: Entity[]
 
   constructor(hassUrl: string, token: string) {
-    console.log('hassurl', hassUrl)
     this.auth = createLongLivedTokenAuth(hassUrl, token)
     this.connection = null
+    this.entities = []
   }
 
-  handleStateChange(entities: any) {
-    console.log(entities)
+  handleState(state: any) {
+    let entity: Entity | any
+    entity = find(this.entities, { id: state.id })
+    if (!entity) {
+      entity = new Entity(state)
+      this.entities.push(entity)
+    }
   }
 
-  subscribeEntities() {
+  handleStates = (states: any) => {
+    Object.keys(states).forEach((key: string) => this.handleState(states[key]))
+  }
+
+  async stateInit() {
     if (this.connection) {
-      subscribeEntities(this.connection, this.handleStateChange);
-      //TODO: Use this data for something
+      await subscribeEntities(this.connection, this.handleStates)
     }
   }
 

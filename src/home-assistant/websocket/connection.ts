@@ -57,6 +57,7 @@ type WebSocketResponse =
   | WebSocketResultResponse
   | WebSocketResultErrorResponse;
 
+
 type SubscriptionUnsubscribe = () => Promise<void>;
 
 interface SubscribeEventCommmandInFlight<T> {

@@ -77,7 +77,7 @@ export const createStore = <State>(state?: State): Store<State> => {
 
     /**
      * Apply a partial state object to the current state, invoking registered listeners.
-     * @param {Object} update				An object with properties to be merged into state
+     * @param {Object} update 				An object with properties to be merged into state
      * @param {Boolean} [overwrite=false]	If `true`, update will replace state instead of being merged into it
      */
     setState,

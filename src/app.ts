@@ -67,7 +67,8 @@ async function main() {
 
   const homeAssistant: HomeAssistant = new HomeAssistant(HA_URL, HA_TOKEN)
   await homeAssistant.connect()
-  await homeAssistant.subscribeEntities()
+  await homeAssistant.stateInit()
+
 
 }
 

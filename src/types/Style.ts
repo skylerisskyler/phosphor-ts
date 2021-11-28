@@ -1,9 +1,7 @@
-interface StyleProps {
-
-}
-
 class Style {
   constructor() {
 
   }
 }
+
+export default Style
