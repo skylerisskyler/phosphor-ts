@@ -1,0 +1,35 @@
+class LightBulb extends Device{
+ priority: number
+ color: string 
+
+
+
+updatePriority(newPriority){
+  this.priority = new priority;
+}
+
+
+
+updateColor(sceneColor, scenePriority){
+if(scenePriority>this.priority){
+   this.color = newColor
+   this.priotiy = scenePriority
+   }
+}
+
+
+}
+
+
+Alarm extends Scene{
+  DeviceList : [ Device]
+  priority : number
+  
+  updateDevices(){
+    deviceList.foreach((device) -> { device.updateColor(this.color, this.priority)}            )
+  
+  }
+  
+  
+  
+}
