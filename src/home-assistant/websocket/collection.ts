@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 import { Store, createStore } from "./store";
 import { Connection } from "./connection";
 import { UnsubscribeFunc } from "./types";

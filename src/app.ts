@@ -9,16 +9,12 @@ import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { PubSub } from 'graphql-subscriptions';
 
-
-
 const HA_URL: string = process.env.HA_URL || ''
 const HA_TOKEN: string = process.env.HA_TOKEN || ''
 
-
 import schema from '../graphql/schema'
-import configHandler from './utils/configHandler'
 import HomeAssistant from './home-assistant/HomeAssistant'
-import { initial } from 'lodash';
+import Store from './store';
 
 const homeAssistant = true
 
@@ -63,12 +59,16 @@ async function main() {
     console.log(`Server is now running on http://localhost:${PORT}/graphql`)
   );
 
-  const config: any = configHandler.init()
 
-  const homeAssistant: HomeAssistant = new HomeAssistant(HA_URL, HA_TOKEN)
-  await homeAssistant.connect()
-  await homeAssistant.stateInit()
+  const store: any = new Store('../config.json')
+  await store.loadConfig()
 
+  // const homeAssistant: HomeAssistant = new HomeAssistant(HA_URL, HA_TOKEN)
+
+  // homeAssistant.subscribeStore(store)
+
+  // await homeAssistant.connect()
+  // await homeAssistant.stateInit()
 
 }
 

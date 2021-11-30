@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 export function parseQuery<T>(queryString: string) {
   const query: any = {};
   const items = queryString.split("&");

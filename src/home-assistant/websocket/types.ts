@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 // This file has no imports on purpose
 // So it can easily be consumed by other TS projects
 

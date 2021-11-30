@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 // import { getCollection } from "./collection";
 import { HassEntities, StateChangedEvent, UnsubscribeFunc } from "./types";
 import { Connection } from "./connection";

@@ -1,7 +1,10 @@
 class Trigger {
-  constructor() {
+  constructor(config: any) {
 
   }
+
+  subscribe() { }
+  update() { }
 }
 
 export default Trigger

@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 import { Connection } from "./connection";
 import * as messages from "./messages";
 import {

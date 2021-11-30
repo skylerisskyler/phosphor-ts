@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 // JS extensions in imports allow tsc output to be consumed by browsers.
 import { createSocket } from "./socket";
 import { Connection, ConnectionOptions } from "./connection";

@@ -1,3 +1,8 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
+
 /**
  * Connection that wraps a socket and provides an interface to interact with
  * the Home Assistant websocket API.

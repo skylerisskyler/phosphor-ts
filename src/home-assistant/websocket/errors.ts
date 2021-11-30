@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 export const ERR_CANNOT_CONNECT = 1;
 export const ERR_INVALID_AUTH = 2;
 export const ERR_CONNECTION_LOST = 3;

@@ -1,3 +1,7 @@
+// (c) Home Assistant
+// homeassistant-js-websocket - Apache v2 license
+// adapted to nodejs and project specifics
+
 import { UnsubscribeFunc } from "./types";
 
 // (c) Jason Miller

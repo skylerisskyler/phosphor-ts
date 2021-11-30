@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./dist/src/app.js --ignore ./config.json"
+    "dev": "nodemon ./src/app.ts --ignore ./config.json"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "@graphql-tools/schema": "^8.3.1",
     "@graphql-tools/utils": "^8.5.3",
     "@types/ws": "^8.2.0",
+    "ajv": "^8.8.2",
     "apollo-server": "^3.5.0",
     "apollo-server-core": "^3.5.0",
     "apollo-server-express": "^3.5.0",
