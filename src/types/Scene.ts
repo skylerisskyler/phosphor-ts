@@ -6,10 +6,14 @@ interface IScene {
   styleGraph: any
 }
 
+interface StyleGraph {
+  [key: string] : any
+}
+
 class Scene {
 
-  name
-  styleGraph
+  name : string
+  styleGraph : StyleGraph
 
   constructor(config: any, lights: Light[], styles: Style[]) {
     this.name = config.name
