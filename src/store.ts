@@ -40,6 +40,7 @@ class Store implements IStore {
 
   }
 
+  //TODO create a config schema or apply null checks in the case of missing
   async loadConfig() {
     const config: IStore = JSON.parse(await fs.readFileSync("./config.json", "utf8"))
 
