@@ -10,12 +10,14 @@ export interface StyleProps {
 
 class Style {
 
+  id: string
   props: StyleProps
   listeners: any[]
 
-  constructor(styleConfig: any, variables: Variable[]) {
+  constructor(config: any, variables: Variable[]) {
+    this.id = config.id
     this.props = {}
-    Object.entries(styleConfig.props).forEach(([prop, value]) => {
+    Object.entries(config.props).forEach(([prop, value]) => {
       const isVariable = (value as string).includes('$')
       if (prop === "brightness") {
         if (isVariable) {

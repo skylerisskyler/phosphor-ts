@@ -1,8 +1,50 @@
 {
-	"lights" : [],
-    "triggers" : [],
-    "triggers" : [],
-    "variables" : [],
-    "styles" : [],
-    "scenes" : []
+  "lights": [
+    {
+      "context": {
+        "type": "home-assistant",
+        "props": {
+          "entityId": "light.living_room"
+        }
+      },
+      "selectors": ["#example", ".something"],
+      "scenes": ["main-scene"]
+    }
+  ],
+  "variables": [
+    {
+      "namespace": "bri",
+      "context": {
+        "type": "home-assistant",
+        "props": {
+          "entityId": "input_number.brightness"
+        }
+      }
+    }
+  ],
+  "triggers": [],
+  "styles": [
+    {
+      "id": "777",
+      "props": {
+        "color": "white",
+        "brightness": "$bri"
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "name": "main-scene",
+      "styleGraph": [
+        {
+          "selector": "#example",
+          "style": "777"
+        },
+        {
+          "selector": ".something",
+          "style": "777"
+        }
+      ]
+    }
+  ]
 }
