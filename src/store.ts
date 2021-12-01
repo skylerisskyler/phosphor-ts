@@ -57,6 +57,7 @@ class Store implements IStore {
     this.styles = config.styles.map((styleConfig: any) =>
       new Style(styleConfig, this.variables))
 
+
     this.scenes = config.scenes.map((sceneConfig: any) =>
       new Scene(sceneConfig, this.lights, this.styles))
 

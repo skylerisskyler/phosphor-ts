@@ -1,42 +1,65 @@
-import { extendResolversFromInterfaces } from "@graphql-tools/schema";
 import { Light } from "./Light";
 import Style from "./Style";
+import { find } from 'lodash'
+import Layer from "./Layer";
+import { StyleMap } from "./Scene";
+
+
 
 
 class Cascade {
 
   selector: string
-  lights: Light[]
-  // style: Style
+  layers: Layer[] | undefined
+  style: Style | undefined
+
   inheritors: Cascade[]
 
-  constructor(selectors: string[], light?: Light) {
-    const selector = selectors.pop()
+  constructor(selectors: string[], layer?: Layer, styleMaps?: StyleMap[]) {
 
+
+    this.inheritors = []
+    this.layers = []
+
+    const selector = selectors.pop()
     if (!selector) {
       throw new Error('selector is not defined')
+    } else {
+      this.selector = selector
     }
 
-    this.selector = selector
-    this.lights = []
-    this.inheritors = []
+    //check not a root constructor call
+    if (layer && styleMaps) {
+      const styleMapMatch = styleMaps.find((s) => s.selector === this.selector)
+      if (styleMapMatch) {
+        this.style = styleMapMatch.style
+      } else {
+        throw new Error('no style matched to selector')
+      }
 
-    if (selectors.length && light) {
-      this.add(selectors, light)
-    } else if (selectors.length === 0 && light) {
-      console.log('ssss')
-      this.lights.push(light)
+      if (selectors.length) {
+        //this cascade is a node
+        this.add(selectors, layer, styleMaps)
+      } else {
+        //this cascade is a leaf
+        this.layers.push(layer)
+      }
     }
 
 
-    // this.lights = []
-    // this.style = style
-    // this.inheritors = []
+
   }
 
-  add(selectors: string[], light: Light) {
-    const inheritor = new Cascade(selectors, light)
+  add(selectors: string[], layer: Layer, styleMaps: StyleMap[]) {
+
+    //TODO add checks
+
+    const inheritor = new Cascade(selectors, layer, styleMaps)
     this.inheritors.push(inheritor)
+  }
+
+  render() {
+
   }
 
 }

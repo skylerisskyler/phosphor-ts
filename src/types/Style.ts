@@ -4,8 +4,7 @@ import Scene from "./Scene"
 import Variable from "./Variable"
 
 export interface StyleProps {
-  brightness?: number
-  color?: string
+  [prop: string]: string
 }
 
 class Style {
@@ -17,25 +16,28 @@ class Style {
   constructor(config: any, variables: Variable[]) {
     this.id = config.id
     this.props = {}
-    Object.entries(config.props).forEach(([prop, value]) => {
-      const isVariable = (value as string).includes('$')
-      if (prop === "brightness") {
-        if (isVariable) {
-          const namespace = (value as string).replace('$', '')
-          const variable = find(variables, { namespace })
-          if (variable) {
-            variable.addListener(this, prop)
-          } else {
-            throw new Error('variable does not exist')
-          }
+
+    Object.entries(config.props as StyleProps).forEach(([prop, value]) => {
+      const isVariable = value.includes('$')
+      if (isVariable) {
+        const namespace = value.replace('$', '')
+        const variable = find(variables, { namespace })
+        if (!variable) {
+          throw new Error('variable does not exist')
         }
+        variable.addListener(this, prop)
       }
+      Object.assign(this.props, { prop: value })
     })
     this.listeners = []
   }
 
   addListener(listener: Function) {
     this.listeners.push(listener)
+  }
+
+  merge(style: Style) {
+    return Object.assign(style.props, this.props)
   }
 
 

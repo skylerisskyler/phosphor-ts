@@ -4,6 +4,7 @@ import { find, merge } from "lodash";
 import Cascade from './Cascade'
 import fs from 'fs'
 import util from 'util'
+import Layer from "./Layer";
 
 interface IScene {
   name: string
@@ -12,6 +13,11 @@ interface IScene {
 
 interface ICascade {
   [key: string]: any
+}
+
+export interface StyleMap {
+  selector: string
+  style: Style
 }
 
 class Scene {
@@ -25,7 +31,8 @@ class Scene {
 
     const cascadeConfig = config.cascade
 
-    const compiled = cascadeConfig.map((s: any) => {
+    const styleMaps: StyleMap[] = cascadeConfig.map((s: any) => {
+
       const style = find(styles, { id: s.style })
       if (!style) {
         throw new Error('style does not exist')
@@ -37,24 +44,33 @@ class Scene {
       }
     })
 
-    // console.log(compiled)
+    const layers = lights.reduce((layers, light: Light) => {
 
-    const sceneLights = lights.filter((light) => {
-      const sceneIdx = light.scenes.findIndex((sceneName) => {
-        return sceneName === this.name
+      const layerMatch = light.layers.find((layer: Layer) => {
+        return layer.setScene(this)
       })
 
-      if (sceneIdx < 0) {
-        throw new Error('Scene does not exist on light')
+      if (layerMatch) {
+        layers.push(layerMatch)
       }
-      light.scenes[sceneIdx] = this
-      return true
+
+      return layers
+
+    }, [] as Layer[])
+
+
+    layers.forEach((layer: Layer) => {
+      this.cascade.add(layer.light.selectors, layer, styleMaps)
     })
 
-    sceneLights.forEach((sceneLight: Light) => {
-      this.cascade.add(sceneLight.selectors, sceneLight)
-    })
+    // console.log(util.inspect(this.cascade, false, null, true /* enable colors */))
+
+    console.log(this.cascade)
+
+
   }
+
+
 
   update(props: StyleProps) {
 

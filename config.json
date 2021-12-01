@@ -8,7 +8,9 @@
         }
       },
       "selectors": ["#example", ".something", ".nah"],
-      "scenes": ["main-scene"]
+      "layers": [{
+        "scene": "main-scene"
+      }]
     },
     {
       "context": {
@@ -18,7 +20,9 @@
         }
       },
       "selectors": ["#example", ".something", ".something"],
-      "scenes": ["main-scene"]
+      "layers": [{
+        "scene": "main-scene"
+      }]
     }
   ],
   "variables": [
