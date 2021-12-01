@@ -7,7 +7,17 @@
           "entityId": "light.living_room"
         }
       },
-      "selectors": ["#example", ".something"],
+      "selectors": ["#example", ".something", ".nah"],
+      "scenes": ["main-scene"]
+    },
+    {
+      "context": {
+        "type": "home-assistant",
+        "props": {
+          "entityId": "light.bedroom"
+        }
+      },
+      "selectors": ["#example", ".something", ".something"],
       "scenes": ["main-scene"]
     }
   ],
@@ -35,13 +45,17 @@
   "scenes": [
     {
       "name": "main-scene",
-      "styleGraph": [
+      "cascade": [
         {
           "selector": "#example",
           "style": "777"
         },
         {
           "selector": ".something",
+          "style": "777"
+        },
+        {
+          "selector": ".nah",
           "style": "777"
         }
       ]

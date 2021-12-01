@@ -1,28 +1,31 @@
 import Style, { StyleProps } from "./Style";
 import { Light } from './Light'
 import { find, merge } from "lodash";
+import Cascade from './Cascade'
+import fs from 'fs'
+import util from 'util'
 
 interface IScene {
   name: string
-  styleGraph: any
+  cascade: any
 }
 
-interface StyleGraph {
+interface ICascade {
   [key: string]: any
 }
 
 class Scene {
 
   name: string
-  styleGraph: StyleGraph
+  cascade: Cascade
 
   constructor(config: any, lights: Light[], styles: Style[]) {
     this.name = config.name
-    this.styleGraph = {}
+    this.cascade = new Cascade(['root'])
 
-    const styleGraph = config.styleGraph
+    const cascadeConfig = config.cascade
 
-    const compiled = styleGraph.map((s: any) => {
+    const compiled = cascadeConfig.map((s: any) => {
       const style = find(styles, { id: s.style })
       if (!style) {
         throw new Error('style does not exist')
@@ -34,7 +37,7 @@ class Scene {
       }
     })
 
-    console.log(compiled)
+    // console.log(compiled)
 
     const sceneLights = lights.filter((light) => {
       const sceneIdx = light.scenes.findIndex((sceneName) => {
@@ -48,32 +51,9 @@ class Scene {
       return true
     })
 
-    const res = sceneLights.reduce((acc: any, sceneLight: Light) => {
-
-      const zz = sceneLight.selectors.reverse().reduce((acc: any, selector: string) => {
-        if (Object.keys(acc).length === 0) {
-          if (!acc.lights) {
-            acc.lights = []
-          }
-          if (!acc.style) {
-            const style = compiled.find((c: any) => {
-              return c.selector === selector
-            })
-            if (!style) {
-              throw new Error('style does not exist')
-            }
-            acc.style = style
-          }
-          acc.lights.push(sceneLight)
-        }
-        return { [selector]: acc }
-      }, {})
-
-
-      return merge(zz, acc)
-    }, {})
-    console.log('REZZ', res)
-
+    sceneLights.forEach((sceneLight: Light) => {
+      this.cascade.add(sceneLight.selectors, sceneLight)
+    })
   }
 
   update(props: StyleProps) {
