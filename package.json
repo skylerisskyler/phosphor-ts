@@ -25,7 +25,8 @@
     "home-assistant-js-websocket": "^5.11.2",
     "lodash": "^4.17.21",
     "subscriptions-transport-ws": "^0.11.0",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.177",

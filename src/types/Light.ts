@@ -1,6 +1,11 @@
+
 import { find } from "lodash"
 import Layer from "./Layer"
 import Scene from "./Scene"
+
+import { loggers } from 'winston';
+const logger = loggers.get('logger')
+
 
 interface IHaContextProps {
   entityId: string
@@ -39,6 +44,7 @@ export class Light implements ILight {
   }
 
   update(state: any) {
+    logger.info(state)
     this.state = state
   }
 

@@ -36,7 +36,7 @@ export function createSocket(options: ConnectionOptions): Promise<HaWebSocket> {
   const url = auth.wsUrl;
 
   if (DEBUG) {
-    console.log("[Auth phase] Initializing", url);
+    logger.info("[Auth phase] Initializing", url);
   }
 
   function connect(
@@ -45,7 +45,7 @@ export function createSocket(options: ConnectionOptions): Promise<HaWebSocket> {
     promReject: (err: Error) => void
   ) {
     if (DEBUG) {
-      console.log("[Auth Phase] New connection", url);
+      logger.info("[Auth Phase] New connection", url);
     }
 
     const socket = new WebSocket(url) as HaWebSocket;
@@ -88,7 +88,7 @@ export function createSocket(options: ConnectionOptions): Promise<HaWebSocket> {
       const message = JSON.parse(event);
 
       if (DEBUG) {
-        console.log("[Auth phase] Received", message);
+        logger.info("[Auth phase] Received", message);
       }
       switch (message.type) {
         case MSG_TYPE_AUTH_INVALID:

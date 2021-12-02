@@ -4,3 +4,6 @@ dist/
 config.json
 HomeAssistant.txt
 db.json
+error.log
+combined.log
+.idea

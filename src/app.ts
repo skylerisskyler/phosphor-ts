@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+
 import Express from 'express'
 import WebSocket from 'ws'
 import { execute, subscribe } from 'graphql';
@@ -8,6 +9,8 @@ import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { PubSub } from 'graphql-subscriptions';
+import './utils/logger'
+import {loggers} from 'winston'
 
 const HA_URL: string = process.env.HA_URL || ''
 const HA_TOKEN: string = process.env.HA_TOKEN || ''
@@ -18,11 +21,21 @@ import Store from './store';
 
 const homeAssistant = true
 
+const logger = loggers.get('logger')
+
+
 async function main() {
 
   const app = Express()
 
+  //add Winston logging as middleware to express
+  app.use( (req, res, done) => {
+    logger.debug(req.originalUrl);
+    done();
+});
   const httpServer = createServer(app);
+
+
 
   const pubsub = new PubSub()
 
@@ -56,7 +69,7 @@ async function main() {
 
   const PORT = 4000;
   httpServer.listen(PORT, () =>
-    console.log(`Server is now running on http://localhost:${PORT}/graphql`)
+    logger.info(`Server is now running on http://localhost:${PORT}/graphql`)
   );
 
 
