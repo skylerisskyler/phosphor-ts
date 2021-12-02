@@ -4,7 +4,7 @@ import Layer from "./Layer"
 import Scene from "./Scene"
 
 import { loggers } from 'winston';
-const logger = loggers.get('logger')
+const logger = loggers.get("logger")
 
 
 interface IHaContextProps {

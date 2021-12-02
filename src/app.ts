@@ -10,12 +10,12 @@ import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { PubSub } from 'graphql-subscriptions';
 import './utils/logger'
-import {loggers} from 'winston'
+import { loggers } from 'winston'
 
 const HA_URL: string = process.env.HA_URL || ''
 const HA_TOKEN: string = process.env.HA_TOKEN || ''
 
-import schema from '../graphql/schema'
+import schema from './graphql/schema'
 import HomeAssistant from './home-assistant/HomeAssistant'
 import Store from './store';
 
@@ -29,10 +29,10 @@ async function main() {
   const app = Express()
 
   //add Winston logging as middleware to express
-  app.use( (req, res, done) => {
+  app.use((req, res, done) => {
     logger.debug(req.originalUrl);
     done();
-});
+  });
   const httpServer = createServer(app);
 
 

@@ -13,6 +13,9 @@ import { HassEvent, MessageBase } from "./types";
 import { HaWebSocket } from "./socket";
 import type { Auth } from "./auth";
 
+import { loggers } from 'winston'
+const logger = loggers.get('logger')
+
 const DEBUG = false;
 
 export type ConnectionOptions = {

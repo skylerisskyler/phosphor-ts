@@ -39,7 +39,7 @@ export const debounce = <T extends (...args: any[]) => unknown>(
     };
     const callNow = immediate && !timeout;
     clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
+    timeout = setTimeout(later, wait) as unknown as number;
     if (callNow) {
       func.apply(context, args);
     }

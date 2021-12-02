@@ -1,7 +1,7 @@
 //configure the Winston logger
 import winston from 'winston'
 
-winston.loggers.add('logger', {
+winston.loggers.add("logger", {
 
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
@@ -12,7 +12,7 @@ winston.loggers.add('logger', {
     //
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' }),
-    new winston.transports.Console({format: winston.format.simple()})
+    new winston.transports.Console({ format: winston.format.simple() })
   ],
 })
 

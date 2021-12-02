@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.ts --ignore ./config.json --ignore ./output.json"
+    "dev": "nodemon ./src/app.ts --ignore ./config.json --ignore ./output.json",
+    "start:debug": "node --inspect-brk --require ts-node/register ./src/app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.177",
-    "@types/websocket": "^1.0.4"
+    "@types/websocket": "^1.0.4",
+    "ts-node": "^10.4.0"
   }
 }

@@ -17,6 +17,8 @@ import { getStates } from './websocket/commands'
 import { Light } from "../types/Light";
 import Trigger from '../types/Trigger'
 import Store from "../store";
+import { loggers } from 'winston'
+const logger = loggers.get('logger')
 
 import { filter, find } from 'lodash'
 

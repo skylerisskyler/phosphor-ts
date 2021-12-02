@@ -14,6 +14,8 @@ import { Error } from "./types";
 import type { ConnectionOptions } from "./connection";
 import * as messages from "./messages";
 import WebSocket from "ws";
+import { loggers } from 'winston'
+const logger = loggers.get('logger')
 
 const DEBUG = true;
 
