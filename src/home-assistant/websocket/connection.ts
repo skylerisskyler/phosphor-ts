@@ -230,7 +230,7 @@ export class Connection {
 
   sendMessage(message: MessageBase, commandId?: number): void {
     if (DEBUG) {
-      console.log("Sending", message);
+      logger.info("Sending", message);
     }
 
     if (this._queuedMessages) {
@@ -333,7 +333,7 @@ export class Connection {
     const message: WebSocketResponse = JSON.parse(event);
 
     if (DEBUG) {
-      console.log("Received", message);
+      logger.info("Received", message);
     }
 
     const info = this.commands.get(message.id);
@@ -405,7 +405,7 @@ export class Connection {
     const reconnect = (tries: number) => {
       setTimeout(async () => {
         if (DEBUG) {
-          console.log("Trying to reconnect");
+          logger.info("Trying to reconnect");
         }
         try {
           const socket = await options.createSocket(options);
