@@ -1,17 +1,18 @@
 import { IResolvers } from '@graphql-tools/utils';
 import { GraphQLResolveInfo } from 'graphql';
 import { PubSub } from 'graphql-subscriptions';
-
+import { loggers } from 'winston';
+const logger = loggers.get('logger')
 const resolvers: IResolvers = {
 
   Mutation: {
     addLight: async (_, __, context) => {
-      console.log(context)
+      logger.info(context)
 
       // const haLightData: any = await homeAssistantApi.get('/states/light.skyler_room')
       //   .then(({ data }) => data)
       //   .catch(error => {
-      //     console.log(error)
+      //     logger.info(error)
       //   });
 
       // const light: Light = {
@@ -41,8 +42,8 @@ const resolvers: IResolvers = {
     test: {
       subscribe: (_, __, context) => {
         const { pubsub } = context
-        console.log(_, __, context)
-        console.log('pubsub:', pubsub)
+        logger.info(_, __, context)
+        logger.info('pubsub:', pubsub)
         return pubsub.asyncIterator(['TEST_WORKS'])
       },
     }

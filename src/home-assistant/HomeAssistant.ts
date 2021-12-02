@@ -69,7 +69,7 @@ class HomeAssistant {
   }
 
   processEvent(event: any) {
-    console.log('the event', event)
+    logger.info('the event', event)
   }
 
   async stateInit() {
