@@ -23,6 +23,7 @@ const homeAssistant = true
 
 const logger = loggers.get('logger')
 
+debugger
 
 async function main() {
 

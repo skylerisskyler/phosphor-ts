@@ -5,7 +5,7 @@ import Cascade from './Cascade'
 import fs from 'fs'
 import util from 'util'
 import Layer from "./Layer";
-import {loggers} from 'winston'
+import { loggers } from 'winston'
 const logger = loggers.get('logger')
 
 interface IScene {
@@ -65,10 +65,7 @@ class Scene {
       this.cascade.add(layer.light.selectors, layer, styleMaps)
     })
 
-    // console.log(util.inspect(this.cascade, false, null, true /* enable colors */))
-
-    logger.info("cascade: ",this.cascade)
-
+    console.log(util.inspect(this.cascade))
 
   }
 

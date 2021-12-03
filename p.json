@@ -1,0 +1,135 @@
+{
+    "inheritors": [
+        {
+            "inheritors": [
+                {
+                    "inheritors": [
+                        {
+                            "inheritors": [],
+                            "layers": [
+                                {
+                                    "isActive": false,
+                                    "light": {
+                                        "context": {
+                                            "props": {
+                                                "entityId": "light.living_room"
+                                            },
+                                            "type": "home-assistant"
+                                        },
+                                        "layers": [
+                                            "[Circular]"
+                                        ],
+                                        "listeners": [],
+                                        "selectors": [],
+                                        "state": {}
+                                    },
+                                    "scene": {
+                                        "cascade": {
+                                            "inheritors": "[Circular]",
+                                            "layers": [],
+                                            "selector": "root"
+                                        },
+                                        "name": "main-scene"
+                                    }
+                                }
+                            ],
+                            "selector": "#example",
+                            "style": {
+                                "id": "777",
+                                "listeners": [],
+                                "props": {
+                                    "prop": "$bri"
+                                }
+                            }
+                        }
+                    ],
+                    "layers": [],
+                    "selector": ".something",
+                    "style": {
+                        "id": "777",
+                        "listeners": [],
+                        "props": {
+                            "prop": "$bri"
+                        }
+                    }
+                }
+            ],
+            "layers": [],
+            "selector": ".nah",
+            "style": {
+                "id": "777",
+                "listeners": [],
+                "props": {
+                    "prop": "$bri"
+                }
+            }
+        },
+        {
+            "inheritors": [
+                {
+                    "inheritors": [
+                        {
+                            "inheritors": [],
+                            "layers": [
+                                {
+                                    "isActive": false,
+                                    "light": {
+                                        "context": {
+                                            "props": {
+                                                "entityId": "light.bedroom"
+                                            },
+                                            "type": "home-assistant"
+                                        },
+                                        "layers": [
+                                            "[Circular]"
+                                        ],
+                                        "listeners": [],
+                                        "selectors": [],
+                                        "state": {}
+                                    },
+                                    "scene": {
+                                        "cascade": {
+                                            "inheritors": "[Circular]",
+                                            "layers": [],
+                                            "selector": "root"
+                                        },
+                                        "name": "main-scene"
+                                    }
+                                }
+                            ],
+                            "selector": "#example",
+                            "style": {
+                                "id": "777",
+                                "listeners": [],
+                                "props": {
+                                    "prop": "$bri"
+                                }
+                            }
+                        }
+                    ],
+                    "layers": [],
+                    "selector": ".something",
+                    "style": {
+                        "id": "777",
+                        "listeners": [],
+                        "props": {
+                            "prop": "$bri"
+                        }
+                    }
+                }
+            ],
+            "layers": [],
+            "selector": ".something",
+            "style": {
+                "id": "777",
+                "listeners": [],
+                "props": {
+                    "prop": "$bri"
+                }
+            }
+        }
+    ],
+    "layers": [],
+    "selector": "root",
+    "service": "user-service"
+}
